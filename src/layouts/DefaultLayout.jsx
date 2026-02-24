@@ -5,11 +5,14 @@ import Header from "../components/Header";
 export default function DeafaultLayout() {
     return (
         <>
-            <Header />
+        <div className=" bg-dark vh-100">
+             <Header />
             <main className="px-3">
                 <Outlet />
             </main>
 
+        </div>
+           
         </>
 
     )
