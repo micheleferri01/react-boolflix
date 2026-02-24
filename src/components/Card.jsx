@@ -1,10 +1,10 @@
 import { useMoviesInfo } from "../contexts/MoviesInfoContext"
 
-export default function Card({ list }) {
+export default function Card({ movie }) {
     const { languageFlags } = useMoviesInfo();
+    
     return (
         <>
-            {list.map((movie) => (
                 <div key={movie.id} className="col">
                     <ul>
                         <li>Titolo: {movie.title ? movie.title : movie.name}</li>
@@ -13,7 +13,6 @@ export default function Card({ list }) {
                         <li>Voto: {movie.vote_average}</li>
                     </ul>
                 </div>
-            ))}
         </>
     )
 }

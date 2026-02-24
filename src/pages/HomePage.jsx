@@ -28,13 +28,13 @@ export default function HomePage() {
         <>
             <h1 className="my-4">Films</h1>
             <div className="row row-cols-4 g-3">
-                {movies && <Card list={movies} />}
+                {movies && movies.map((movie) =><Card movie={movie} />)}
             </div>
 
             <h1 className="my-4">Serie Tv</h1>
             <div className="row row-cols-4 g-3">
                 {
-                    series && <Card list={series} />
+                    series && series.map ((serie) => <Card movie={serie} />)
                 }
             </div>
 
