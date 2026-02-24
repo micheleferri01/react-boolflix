@@ -6,7 +6,7 @@ export default function DeafaultLayout() {
     return (
         <>
             <Header />
-            <main>
+            <main className="px-3">
                 <Outlet />
             </main>
 

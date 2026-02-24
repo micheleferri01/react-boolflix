@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DeafaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage";
-import {MoviesFetchProvider} from "./contexts/MoviesFetchContext";
+import { MoviesInfoProvider } from "./contexts/MoviesInfoContext";
 
 
 export default function App() {
 
   return (
     <>
-      <MoviesFetchProvider>
+      <MoviesInfoProvider>
         <BrowserRouter>
           <Routes>
             <Route Component={DeafaultLayout}>
@@ -16,7 +16,7 @@ export default function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </MoviesFetchProvider>
+      </MoviesInfoProvider>
 
 
     </>
