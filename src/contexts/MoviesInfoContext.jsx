@@ -10,6 +10,8 @@ const api_key = 'f84274edb11f00e03988508d65bf61e2';
 function MoviesInfoProvider({ children }) {
 
     const [searchedTerm, setSearchedTerm] = useState('');
+    const [empty, setEmpty] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const apiUrl = new URL('https://api.themoviedb.org/3/search/movie');
     apiUrl.searchParams.set('api_key', api_key);
@@ -44,6 +46,8 @@ function MoviesInfoProvider({ children }) {
         if (language === 'sr') return <span className="fi fi-rs"></span>;
         if (language === 'ru') return <span className="fi fi-ru"></span>;
         if (language === 'nb') return <span className="fi fi-no"></span>;
+        if (language === 'te') return <span className="fi fi-in"></span>;
+        if (language === 'fi') return <span className="fi fi-fi"></span>;
 
     }
 
@@ -109,6 +113,10 @@ function MoviesInfoProvider({ children }) {
                 apiPoster,
                 languageFlags,
                 stars,
+                empty,
+                setEmpty,
+                isLoading,
+                setIsLoading,
             }}>
             {children}
         </MoviesInfoContext.Provider>

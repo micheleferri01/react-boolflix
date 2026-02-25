@@ -27,3 +27,11 @@
 .my-card:hover .movie-info{
   display: block;
 }
+
+.empty-state{
+  height: calc(100vh - 87px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.423);
+}

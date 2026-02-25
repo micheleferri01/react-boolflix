@@ -3,13 +3,14 @@ import { useMoviesInfo } from "../contexts/MoviesInfoContext";
 
 export default function Header() {
 
-    const { setSearchedTerm } = useMoviesInfo();
+    const { setSearchedTerm, setEmpty } = useMoviesInfo();
 
     const [searchInput, setSearchInput] = useState('');
 
     const handleSubmitSearch = (e) => {
         e.preventDefault();
         setSearchedTerm(searchInput);
+        setEmpty(false);
     };
 
     return (
