@@ -15,8 +15,8 @@ export default function Header() {
 
     return (
         <>
-            <header className="p-3 d-flex justify-content-between align-items-center bg-black">
-                <h1 className="text-danger">Boolflix</h1>
+            <header className="p-3 d-flex justify-content-between align-items-center gap-3 bg-black">
+                <h1 className="text-danger">BOOLFLIX</h1>
 
                 <form onSubmit={handleSubmitSearch}>
                     <div className="input-group">
