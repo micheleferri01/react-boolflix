@@ -19,8 +19,8 @@ export default function Header() {
 
                 <form onSubmit={handleSubmitSearch}>
                     <div className="input-group">
-                        <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="Cerca..." className="input-form" />
-                        <button className='px-2 btn btn-danger'>Cerca</button>
+                        <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="Cerca..." className="form-control ps-2 rounded-start-5" />
+                        <button className='px-2 btn btn-danger rounded-end-5'>Cerca</button>
                     </div>
                 </form>
 
