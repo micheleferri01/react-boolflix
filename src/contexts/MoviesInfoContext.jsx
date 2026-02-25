@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -9,9 +10,14 @@ const api_key = 'f84274edb11f00e03988508d65bf61e2';
 
 function MoviesInfoProvider({ children }) {
 
+    // # STATES
+
     const [searchedTerm, setSearchedTerm] = useState('');
     const [empty, setEmpty] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [genres, setGenres] = useState([]);
+
+    // # API
 
     const apiUrl = new URL('https://api.themoviedb.org/3/search/movie');
     apiUrl.searchParams.set('api_key', api_key);
@@ -24,6 +30,28 @@ function MoviesInfoProvider({ children }) {
     apiSeriesTv.searchParams.set('language', 'it-IT');
 
     const apiPoster = new URL('https://image.tmdb.org/t/p/w342');
+
+    const apiMoviesGenres = new URL('https://api.themoviedb.org/3/genre/movie/list');
+    apiMoviesGenres.searchParams.set('api_key', api_key);
+    apiMoviesGenres.searchParams.set('language', 'it');
+
+    const apiSeriesGenres = new URL('https://api.themoviedb.org/3/genre/tv/list');
+    apiSeriesGenres.searchParams.set('api_key', api_key);
+    apiSeriesGenres.searchParams.set('language', 'it');
+
+    useEffect( () => {
+        Promise.all([axios.get(apiMoviesGenres.href), axios.get(apiSeriesGenres.href)])
+        .then(([moviesGenresRes, seriesGenresRes]) => {
+            // console.log(moviesGenresRes.data.genres);
+            // console.log(seriesGenresRes.data.genres);
+            const allGenres = [...moviesGenresRes.data.genres, ...seriesGenresRes.data.genres];
+            const uniqueGenres = Array.from(new Map (allGenres.map(genre => [genre.id, genre])).values());
+            console.log(uniqueGenres);
+            setGenres(uniqueGenres);
+        })
+    },[]);
+
+    // # FUNCTIONS
 
     function languageFlags(language) {
         if (language === 'it') return <span className="fi fi-it"></span>;
@@ -48,6 +76,7 @@ function MoviesInfoProvider({ children }) {
         if (language === 'nb') return <span className="fi fi-no"></span>;
         if (language === 'te') return <span className="fi fi-in"></span>;
         if (language === 'fi') return <span className="fi fi-fi"></span>;
+        if (language === 'sl') return <span className="fi fi-si"></span>;
 
     }
 
@@ -117,6 +146,7 @@ function MoviesInfoProvider({ children }) {
                 setEmpty,
                 isLoading,
                 setIsLoading,
+                genres,
             }}>
             {children}
         </MoviesInfoContext.Provider>
