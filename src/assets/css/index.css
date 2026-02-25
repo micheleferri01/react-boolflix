@@ -8,6 +8,14 @@
   background-color: #434343;
 }
 
+.fs-30 {
+  font-size: 30px;
+}
+
+.fs-80 {
+  font-size: 80px;
+}
+
 .my-card{
   background-color: black;
   color: white;

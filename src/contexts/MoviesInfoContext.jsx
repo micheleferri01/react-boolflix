@@ -10,8 +10,11 @@ function MoviesInfoProvider({ children }) {
     // # STATES
 
     const [searchedTerm, setSearchedTerm] = useState('');
+    const [genreFilter, setGenreFilter] = useState(0);
     const [empty, setEmpty] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [movies, setMovies] = useState([]);
+    const [series, setSeries] = useState([]);
     const [genres, setGenres] = useState([]);
 
     // # API
@@ -41,28 +44,35 @@ function MoviesInfoProvider({ children }) {
         .then(([moviesGenresRes, seriesGenresRes]) => {
             // console.log(moviesGenresRes.data.genres);
             // console.log(seriesGenresRes.data.genres);
-            const allGenres = [...moviesGenresRes.data.genres, ...seriesGenresRes.data.genres];
+            const allGenres = [...seriesGenresRes.data.genres, ...moviesGenresRes.data.genres];
             const uniqueGenres = Array.from(new Map (allGenres.map(genre => [genre.id, genre])).values());
             console.log(uniqueGenres);
             setGenres(uniqueGenres);
         })
     },[]);
 
+    const contextValue = {
+        searchedTerm,
+        setSearchedTerm,
+        apiUrl,
+        apiSeriesTv,
+        apiPoster,
+        empty,
+        setEmpty,
+        isLoading,
+        setIsLoading,
+        genres,
+        movies,
+        setMovies,
+        series,
+        setSeries,
+        genreFilter,
+        setGenreFilter,
+    };
 
     return (
         <MoviesInfoContext.Provider
-            value={{
-                searchedTerm,
-                setSearchedTerm,
-                apiUrl,
-                apiSeriesTv,
-                apiPoster,
-                empty,
-                setEmpty,
-                isLoading,
-                setIsLoading,
-                genres,
-            }}>
+            value={contextValue}>
             {children}
         </MoviesInfoContext.Provider>
     )
