@@ -14,10 +14,12 @@ function MoviesInfoProvider({ children }) {
     const apiUrl = new URL('https://api.themoviedb.org/3/search/movie');
     apiUrl.searchParams.set('api_key', api_key);
     apiUrl.searchParams.set('query', searchedTerm);
+    apiUrl.searchParams.set('language', 'it-IT');
 
     const apiSeriesTv = new URL('https://api.themoviedb.org/3/search/tv');
     apiSeriesTv.searchParams.set('api_key', api_key);
     apiSeriesTv.searchParams.set('query', searchedTerm);
+    apiSeriesTv.searchParams.set('language', 'it-IT');
 
     const apiPoster = new URL('https://image.tmdb.org/t/p/w342');
 
