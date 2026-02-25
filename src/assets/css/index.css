@@ -3,3 +3,27 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.my-card{
+  background-color: black;
+  color: white;
+  height: 500px;
+}
+
+.poster{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.movie-info{
+  display: none;
+}
+
+.my-card:hover .poster {
+  display: none;
+}
+
+.my-card:hover .movie-info{
+  display: block;
+}
