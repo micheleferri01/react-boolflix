@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.bg-grey{
+  background-color: #434343;
+}
+
 .my-card{
   background-color: black;
   color: white;
